@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resi Checker - Binderbyte API</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📦 Resi Checker</h1>
+            <p class="subtitle">Cek status pengiriman dengan mudah</p>
+        </header>
+
+        <!-- Settings Modal -->
+        <div id="settingsModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>⚙️ Pengaturan API Token</h2>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <label for="apiToken">API Token Binderbyte:</label>
+                    <input type="password" id="apiToken" placeholder="Masukkan API token Anda">
+                    <div class="modal-actions">
+                        <button id="saveToken" class="btn btn-primary">Simpan Token</button>
+                        <button id="clearToken" class="btn btn-secondary">Hapus Token</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Settings Button -->
+            <div class="settings-button-container">
+                <button id="openSettings" class="btn btn-icon" title="Pengaturan">
+                    ⚙️
+                </button>
+            </div>
+
+            <!-- Token Status -->
+            <div id="tokenStatus" class="token-status hidden">
+                <span class="status-icon">⚠️</span>
+                <span>Token API belum diset. Silakan buka pengaturan terlebih dahulu.</span>
+            </div>
+
+            <!-- Tracking Container (Form + Results Side by Side on Desktop) -->
+            <div class="tracking-container">
+                <!-- Tracking Form -->
+                <div class="tracking-form-wrapper">
+                    <div class="card">
+                        <form id="trackingForm">
+                            <div class="form-group">
+                                <label for="awb">Nomor Resi (AWB)</label>
+                                <input 
+                                    type="text" 
+                                    id="awb" 
+                                    placeholder="Contoh: 004522303763"
+                                    required
+                                    autofocus
+                                >
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="courier">Kurir</label>
+                                <select id="courier">
+                                    <option value="sicepat" selected>SiCepat Express</option>
+                                    <option value="jne">JNE</option>
+                                    <option value="jnt">J&T Express</option>
+                                    <option value="pos">Pos Indonesia</option>
+                                    <option value="tiki">TIKI</option>
+                                    <option value="wahana">Wahana</option>
+                                    <option value="ninja">Ninja Express</option>
+                                    <option value="lion">Lion Parcel</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block" id="trackButton">
+                                <span id="buttonText">🔍 Cek Resi</span>
+                                <span id="buttonLoader" class="loader hidden"></span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <div id="results" class="hidden">
+                    <div class="card">
+                        <div class="result-header">
+                            <h2>📋 Hasil Tracking</h2>
+                            <button id="closeResults" class="btn btn-icon-small">✕</button>
+                        </div>
+                        
+                        <div id="resultContent"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History Section -->
+            <div class="card">
+                <div class="history-header">
+                    <h2>📜 Riwayat Pencarian</h2>
+                    <button id="clearHistory" class="btn btn-secondary btn-small">Hapus Semua</button>
+                </div>
+                <div id="historyList" class="history-list">
+                    <p class="empty-state">Belum ada riwayat pencarian</p>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by <a href="https://binderbyte.com" target="_blank">Binderbyte API</a></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
